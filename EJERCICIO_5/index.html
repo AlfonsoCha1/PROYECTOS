@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clínica Gineco-Pediátrico</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf6fb;
+      color: #333;
+    }
+
+    header {
+      background: #f5e6f7;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header img {
+      max-width: 100%;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1, h2, h3 {
+      color: #b66cbf;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    .valores ul {
+      list-style: circle;
+      padding-left: 1.5rem;
+    }
+
+    .acordeon {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .acordeon button {
+      width: 100%;
+      padding: 1rem;
+      background-color: #fbeeff;
+      border: none;
+      text-align: left;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .acordeon-content {
+      display: none;
+      padding: 1rem;
+      background-color: #fff;
+    }
+
+    .card-form {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button[type="submit"] {
+      background-color: #d89cd8;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .mensaje {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      background-color: #d4edda;
+      color: #155724;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      header, main {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://github.com/Per-Arredondo/ejercicio_clinica-v1/blob/main/portada.png?raw=true" alt="Portada Clínica Gineco-Pediátrico" />
+  </header>
+
+  <main>
+    <section>
+      <h2>¿Quiénes somos?</h2>
+      <p>Somos una clínica especializada en ginecología, obstetricia y pediatría, dedicada al bienestar integral de la mujer y el niño.</p>
+      <h3>Misión</h3>
+      <p>Brindar atención médica especializada con profesionalismo, ética y calidez humana.</p>
+      <h3>Visión</h3>
+      <p>Ser líderes en servicios gineco-pediátricos con innovación y excelencia en el cuidado de nuestros pacientes.</p>
+      <h3>Valores</h3>
+      <div class="valores">
+        <ul>
+          <li>Compromiso</li>
+          <li>Ética</li>
+          <li>Respeto</li>
+          <li>Confianza</li>
+          <li>Calidad</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Especialidades</h2>
+      <div class="acordeon">
+        <button>👩‍⚕️ Ginecología</button>
+        <div class="acordeon-content">
+          <p>Diagnóstico y tratamiento de enfermedades del aparato reproductor femenino, control de salud femenina y planificación familiar.</p>
+        </div>
+      </div>
+      <div class="acordeon">
+        <button>🧐 Obstetricia</button>
+        <div class="acordeon-content">
+          <p>Atención integral durante el embarazo, parto y puerperio, incluyendo controles prenatales y educación materna.</p>
+        </div>
+      </div>
+      <div class="acordeon">
+        <button>👶 Pediatría</button>
+        <div class="acordeon-content">
+          <p>Cuidado médico para recién nacidos, niños y adolescentes, promoviendo el desarrollo físico y emocional.</p>
+        </div>
+      </div>
+      <div class="acordeon">
+        <button>🩺 Medicina General</button>
+        <div class="acordeon-content">
+          <p>Evaluación y tratamiento de condiciones comunes para todas las edades, con enfoque preventivo y diagnóstico.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Agendar Cita Médica</h2>
+      <div class="card-form">
+        <form id="form-cita">
+          <div class="form-group">
+            <label>Nombre completo</label>
+            <input type="text" name="Nombre completo" required />
+          </div>
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="tel" name="Teléfono" required />
+          </div>
+          <div class="form-group">
+            <label>Correo electrónico</label>
+            <input type="email" name="Correo electrónico" required />
+          </div>
+          <div class="form-group">
+            <label>Sexo</label>
+            <select name="Sexo" required>
+              <option value="">Seleccione</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Especialidad (desplegable)</label>
+            <select name="Especialidad (desplegable)" required>
+              <option value="">Seleccione</option>
+              <option value="Ginecología">Ginecología</option>
+              <option value="Obstetricia">Obstetricia</option>
+              <option value="Pediatría">Pediatría</option>
+              <option value="Medicina General">Medicina General</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Fecha</label>
+            <input type="date" name="Fecha" required />
+          </div>
+          <div class="form-group">
+            <label>Hora</label>
+            <input type="time" name="Hora" required />
+          </div>
+          <div class="form-group">
+            <label>Comentarios adicionales (textarea, opcional)</label>
+            <textarea name="Comentarios adicionales (textarea, opcional)" rows="4"></textarea>
+          </div>
+          <button type="submit">Agendar cita</button>
+          <div class="mensaje" id="mensaje-exito">
+            👍 Gracias, tu cita ha sido agendada.<br />
+            ⏳ Redirigiendo al inicio...<br />
+            🎉 Te contactaremos pronto.
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Acordeones
+    document.querySelectorAll('.acordeon button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    // Envío del formulario
+    const form = document.getElementById('form-cita');
+    const mensaje = document.getElementById('mensaje-exito');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+
+      fetch('https://script.google.com/macros/s/AKfycbxo5pZtH9uaM1KZs3Lk_PsMxpwPQ6OVrdPNBb6t5DayqZ85Bcmeja7sGEVuIhHpGVKAkw/exec', {
+        method: 'POST',
+        body: data
+      })
+      .then(res => res.ok ? res.text() : Promise.reject('Error al enviar'))
+      .then(() => {
+        mensaje.style.display = 'block';
+        form.reset();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => mensaje.style.display = 'none', 5000);
+      })
+      .catch(err => alert('Error: ' + err));
+    });
+  </script>
+</body>
+</html>
