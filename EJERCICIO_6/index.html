@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de Libros</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fef6f8;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header, section {
+      max-width: 800px;
+      margin: auto;
+      padding: 1.5em;
+    }
+    header {
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #c94f7c;
+    }
+    h2 {
+      color: #a43c65;
+    }
+    .card {
+      background-color: white;
+      padding: 1.5em;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-top: 2em;
+    }
+    label {
+      display: block;
+      margin-top: 1em;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8em;
+      margin-top: 0.3em;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      margin-top: 1.5em;
+      background-color: #c94f7c;
+      color: white;
+      border: none;
+      padding: 1em 2em;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .success-message {
+      margin-top: 1em;
+      padding: 1em;
+      background-color: #d4edda;
+      color: #155724;
+      border-radius: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tienda de Libros "Lecturas Ilustradas"</h1>
+  </header>
+
+  <section>
+    <h2>¿Quiénes somos?</h2>
+    <p>Somos una tienda de libros apasionada por fomentar la lectura a través de una selección curada y de calidad.</p>
+
+    <h2>Misión</h2>
+    <p>Ofrecer libros que enriquezcan el conocimiento, imaginación y bienestar de nuestros clientes.</p>
+
+    <h2>Visión</h2>
+    <p>Ser la librería favorita por nuestra atención, variedad de títulos y compromiso con la cultura.</p>
+
+    <h2>Valores</h2>
+    <ul>
+      <li>Pasión por la lectura</li>
+      <li>Calidad</li>
+      <li>Servicio</li>
+      <li>Honestidad</li>
+      <li>Accesibilidad</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Solicitar libro</h2>
+    <div class="card">
+      <form id="formularioLibro">
+        <label>Nombre del cliente</label>
+        <input type="text" name="Nombre del cliente" required>
+
+        <label>Correo</label>
+        <input type="email" name="Correo" required>
+
+        <label>Edad</label>
+        <input type="number" name="Edad" required>
+
+        <label>Nombre del libro</label>
+        <input type="text" name="Nombre del libro" required>
+
+        <label>Editorial</label>
+        <input type="text" name="Editorial" required>
+
+        <label>Año del libro</label>
+        <input type="number" name="Año del libro" required>
+
+        <label>Teléfono</label>
+        <input type="tel" name="Teléfono" required>
+
+        <label>Sexo</label>
+        <select name="Sexo" required>
+          <option value="">Selecciona</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Otro">Otro</option>
+        </select>
+
+        <label>Hora</label>
+        <input type="time" name="Hora" required>
+
+        <label>Comentario</label>
+        <textarea name="Comentario" rows="3"></textarea>
+
+        <button type="submit">Enviar solicitud</button>
+        <div class="success-message" id="mensajeExito">
+          👍 Gracias, hemos recibido tu solicitud.<br>
+          ⏳ Procesando...<br>
+          📚 Pronto te contactaremos.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById("formularioLibro").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const mensaje = document.getElementById("mensajeExito");
+
+      fetch("https://script.google.com/macros/s/AKfycbw17vpZpVVsbt7OpAucJ4ZX6DHUn8lqWD9zUSR1HpwDw9k5YTmWppIEtH0Vt-1RUSj9Gw/exec", {
+        method: "POST",
+        body: data
+      })
+      .then(res => res.ok ? res.json() : Promise.reject(res))
+      .then(() => {
+        mensaje.style.display = "block";
+        form.reset();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => mensaje.style.display = "none", 5000);
+      })
+      .catch(err => {
+        alert("Hubo un error al enviar. Intenta nuevamente.");
+        console.error(err);
+      });
+    });
+  </script>
+</body>
+</html>
