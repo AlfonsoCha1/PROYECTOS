@@ -2,7 +2,6 @@
 
 Estos son los enlaces a los ejercicios desplegados con GitHub Pages:
 
-- [EJERCICIO 0](https://alfonsocha1.github.io/PROYECTOS/EJERCICIO_0/index.html)
 - [EJERCICIO 1](https://alfonsocha1.github.io/PROYECTOS/EJERCICIO_1/Index.html)
 - [EJERCICIO 2](https://alfonsocha1.github.io/PROYECTOS/EJERCICIO_2/Index.html)
 - [EJERCICIO 3](https://alfonsocha1.github.io/PROYECTOS/EJERCICIO_3/Index.html)
