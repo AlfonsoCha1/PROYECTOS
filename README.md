@@ -8,3 +8,5 @@ Estos son los enlaces a los ejercicios desplegados con GitHub Pages:
 - [EJERCICIO 4](https://alfonsocha1.github.io/PROYECTOS/EJERCICIO_4/Index.html)
 - [EJERCICIO 5](https://alfonsocha1.github.io/PROYECTOS/EJERCICIO_5/index.html)
 - [EJERCICIO 6](https://alfonsocha1.github.io/PROYECTOS/EJERCICIO_6/index.html)
+- [EJERCICIO 7](https://alfonsocha1.github.io/PROYECTOS/EJERCICIO_7/index.html)
+- [EJERCICIO 8](https://alfonsocha1.github.io/PROYECTOS/EJERCICIO_8/index.html)
