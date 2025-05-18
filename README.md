@@ -22,4 +22,7 @@ Estos son los enlaces a los ejercicios desplegados con GitHub Pages:
 - [EJERCICIO 18](https://alfonsocha1.github.io/PROYECTOS/EJERCICIO_18/index.html)
 - [EJERCICIO 19](https://alfonsocha1.github.io/PROYECTOS/EJERCICIO_19/index.html)
 - [EJERCICIO 20](https://alfonsocha1.github.io/PROYECTOS/EJERCICIO_20/index.html)
-- 
+- Gama: https://gamma.app/docs/Proceso-de-Credito-zoo5r2lhqy1s944
+- https://gamma.app/docs/Unveiling-Photography-Capturing-Moments-in-Time-sl54h2ulkjpoqeo
+- Canva https://www.canva.com/design/DAGnx52_nPI/ZFKBYGbXyGKT6-urmR_upw/edit?utm_content=DAGnx52_nPI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+- https://www.canva.com/design/DAGnx_29-r0/30QgElKjKiqPAXUeIHhobA/edit?utm_content=DAGnx_29-r0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton 
