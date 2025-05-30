@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistema de Tickets - Firebase</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <!-- SweetAlert2 -->
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+  <style>
+    body { background: #f7f7f9; }
+    .ticket-card { margin-bottom: 1rem; border-radius: 12px; box-shadow: 0 2px 8px #0001; }
+    .swal2-popup { font-size: 1.1rem !important; }
+    #main-content { display: none; }
+    .fa-ticket { color: #2367d1; }
+    .bg-prio-alta { background: #fd6b6b; color: white; }
+    .bg-prio-media { background: #ffc045; color: #4a3803; }
+    .bg-prio-baja { background: #5ac98c; color: white; }
+    .pointer { cursor: pointer; }
+    @media (max-width: 576px) {
+      .dashboard-btns { flex-direction: column !important; gap: 0.75rem !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOGIN / REGISTRO -->
+  <div class="container py-5" id="auth-section">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <h3 class="text-center mb-3"><i class="fa-solid fa-ticket"></i> Sistema de Tickets</h3>
+            <div id="auth-forms">
+              <!-- Login Form -->
+              <form id="login-form">
+                <div class="mb-2">
+                  <label for="login-email" class="form-label">Correo electrónico</label>
+                  <input type="email" class="form-control" id="login-email" required>
+                </div>
+                <div class="mb-2">
+                  <label for="login-pass" class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" id="login-pass" required>
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                </div>
+                <div class="text-center mt-2">
+                  <span class="pointer text-decoration-underline" id="to-register">¿No tienes cuenta? Regístrate</span>
+                  <br>
+                  <span class="pointer text-decoration-underline" id="to-reset">¿Olvidaste tu contraseña?</span>
+                </div>
+              </form>
+              <!-- Register Form -->
+              <form id="register-form" class="d-none">
+                <div class="mb-2">
+                  <label for="register-email" class="form-label">Correo electrónico</label>
+                  <input type="email" class="form-control" id="register-email" required>
+                </div>
+                <div class="mb-2">
+                  <label for="register-pass" class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" id="register-pass" required>
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-success">Registrarse</button>
+                </div>
+                <div class="text-center mt-2">
+                  <span class="pointer text-decoration-underline" id="to-login">¿Ya tienes cuenta? Inicia sesión</span>
+                </div>
+              </form>
+              <!-- Reset Password Form -->
+              <form id="reset-form" class="d-none">
+                <div class="mb-2">
+                  <label for="reset-email" class="form-label">Correo electrónico</label>
+                  <input type="email" class="form-control" id="reset-email" required>
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-warning">Enviar enlace de recuperación</button>
+                </div>
+                <div class="text-center mt-2">
+                  <span class="pointer text-decoration-underline" id="to-login2">Volver a iniciar sesión</span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="container py-3" id="main-content">
+    <!-- Header y Logout -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3>Bienvenido, <span id="user-email"></span> <i class="fa-solid fa-ticket"></i></h3>
+      <button class="btn btn-outline-danger" id="logout-btn"><i class="fa fa-sign-out-alt"></i> Cerrar sesión</button>
+    </div>
+    <!-- Dashboard botones -->
+    <div class="d-flex gap-3 mb-4 dashboard-btns">
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ticketModal"><i class="fa fa-plus"></i> Crear Ticket</button>
+      <button class="btn btn-success" id="export-csv"><i class="fa fa-file-csv"></i> Exportar CSV</button>
+    </div>
+    <!-- Chart -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <canvas id="prio-chart" height="80"></canvas>
+      </div>
+    </div>
+    <!-- Tickets -->
+    <h4 class="mb-2">Lista de Tickets</h4>
+    <div id="tickets-list"></div>
+  </div>
+
+  <!-- Modal de Crear Ticket -->
+  <div class="modal fade" id="ticketModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="ticket-form">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="fa fa-plus"></i> Nuevo Ticket</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-2">
+              <label class="form-label">Título</label>
+              <input type="text" class="form-control" id="ticket-titulo" maxlength="50" required>
+            </div>
+            <div class="mb-2">
+              <label class="form-label">Descripción</label>
+              <textarea class="form-control" id="ticket-desc" rows="2" maxlength="200" required></textarea>
+            </div>
+            <div class="mb-2">
+              <label class="form-label">Prioridad</label>
+              <select class="form-select" id="ticket-prio" required>
+                <option value="alta">Alta</option>
+                <option value="media">Media</option>
+                <option value="baja">Baja</option>
+              </select>
+            </div>
+            <div class="mb-2">
+              <label class="form-label">Tipo de pedido</label>
+              <input type="text" class="form-control" id="ticket-tipo" maxlength="40" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Crear</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    // Import Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+
+    // Configuración de Firebase (usa tus propias credenciales en producción)
+   const firebaseConfig = {
+        apiKey: "AIzaSyAH_6pec8U0WjILnztmcbHBMrb0IN0TlfM",
+        authDomain: "proyecto3-56cea.firebaseapp.com",
+        projectId: "proyecto3-56cea",
+        storageBucket: "proyecto3-56cea.firebasestorage.app",
+        messagingSenderId: "345001055704",
+        appId: "1:345001055704:web:694637592103b1a2ba4ead"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // ====== Elementos DOM ======
+    const authSection = document.getElementById('auth-section');
+    const mainContent = document.getElementById('main-content');
+    const userEmail = document.getElementById('user-email');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const resetForm = document.getElementById('reset-form');
+    const toRegister = document.getElementById('to-register');
+    const toLogin = document.getElementById('to-login');
+    const toLogin2 = document.getElementById('to-login2');
+    const toReset = document.getElementById('to-reset');
+    const ticketsList = document.getElementById('tickets-list');
+    const exportCsvBtn = document.getElementById('export-csv');
+    const logoutBtn = document.getElementById('logout-btn');
+    const ticketForm = document.getElementById('ticket-form');
+    let prioChart; // Para Chart.js
+
+    // ====== Auth navigation ======
+    toRegister.onclick = () => { loginForm.classList.add('d-none'); registerForm.classList.remove('d-none'); };
+    toLogin.onclick = toLogin2.onclick = () => { registerForm.classList.add('d-none'); resetForm.classList.add('d-none'); loginForm.classList.remove('d-none'); };
+    toReset.onclick = () => { loginForm.classList.add('d-none'); resetForm.classList.remove('d-none'); };
+
+    // ====== Login ======
+    loginForm.onsubmit = async e => {
+      e.preventDefault();
+      try {
+        await signInWithEmailAndPassword(auth, loginForm['login-email'].value, loginForm['login-pass'].value);
+        loginForm.reset();
+      } catch (err) {
+        Swal.fire('Error', 'Correo o contraseña incorrectos', 'error');
+      }
+    };
+
+    // ====== Registro ======
+   registerForm.onsubmit = async e => {
+  e.preventDefault();
+  try {
+    await createUserWithEmailAndPassword(auth, registerForm['register-email'].value, registerForm['register-pass'].value);
+    registerForm.reset();
+  } catch (err) {
+    Swal.fire('Error', err.message, 'error');
+  }
+};
+
+
+    // ====== Recuperar contraseña ======
+    resetForm.onsubmit = async e => {
+      e.preventDefault();
+      try {
+        await sendPasswordResetEmail(auth, resetForm['reset-email'].value);
+        Swal.fire('¡Listo!', 'Revisa tu correo para recuperar la contraseña.', 'success');
+        resetForm.reset();
+      } catch (err) {
+        Swal.fire('Error', 'No se pudo enviar el correo.', 'error');
+      }
+    };
+
+    // ====== Cerrar sesión ======
+    logoutBtn.onclick = () => signOut(auth);
+
+    // ====== Cambio de estado de autenticación ======
+    onAuthStateChanged(auth, async user => {
+      if (user) {
+        authSection.style.display = "none";
+        mainContent.style.display = "block";
+        userEmail.textContent = user.email;
+        await cargarTickets();
+      } else {
+        mainContent.style.display = "none";
+        authSection.style.display = "block";
+      }
+    });
+
+    // ====== Crear Ticket ======
+    ticketForm.onsubmit = async e => {
+      e.preventDefault();
+      const titulo = document.getElementById('ticket-titulo').value.trim();
+      const desc = document.getElementById('ticket-desc').value.trim();
+      const prio = document.getElementById('ticket-prio').value;
+      const tipo = document.getElementById('ticket-tipo').value.trim();
+      // Folio único simple: TIMESTAMP-4D
+      const folio = 'TCK-' + Date.now().toString(36).toUpperCase().slice(-7);
+      const fecha = new Date();
+      try {
+        await addDoc(collection(db, "tickets"), {
+          uid: auth.currentUser.uid,
+          titulo,
+          descripcion: desc,
+          prioridad: prio,
+          tipo,
+          folio,
+          fecha_creacion: serverTimestamp(),
+          fecha_str: fecha.toLocaleString()
+        });
+        Swal.fire('Éxito', '¡Ticket creado!', 'success');
+        ticketForm.reset();
+        // Cerrar modal Bootstrap (compatibilidad)
+        let modal = bootstrap.Modal.getInstance(document.getElementById('ticketModal'));
+        modal.hide();
+        await cargarTickets();
+      } catch (err) {
+        Swal.fire('Error', 'No se pudo crear el ticket.', 'error');
+      }
+    };
+
+    // ====== Cargar y mostrar tickets ======
+    async function cargarTickets() {
+      ticketsList.innerHTML = '<div class="text-center my-3"><span class="spinner-border"></span> Cargando tickets...</div>';
+      let q = query(collection(db, "tickets"), where("uid", "==", auth.currentUser.uid), orderBy("fecha_creacion", "desc"));
+      let querySnapshot = await getDocs(q);
+      let tickets = [];
+      querySnapshot.forEach(doc => {
+        tickets.push({ id: doc.id, ...doc.data() });
+      });
+      mostrarTickets(tickets);
+      actualizarChart(tickets);
+    }
+
+    // ====== Mostrar tickets ======
+    function mostrarTickets(tickets) {
+      if (tickets.length === 0) {
+        ticketsList.innerHTML = '<div class="alert alert-info">No hay tickets registrados.</div>';
+        return;
+      }
+      ticketsList.innerHTML = '';
+      tickets.forEach(ticket => {
+        let color = ticket.prioridad === 'alta' ? 'bg-prio-alta' :
+                    ticket.prioridad === 'media' ? 'bg-prio-media' : 'bg-prio-baja';
+        let html = `
+          <div class="card ticket-card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-1">
+                  <i class="fa fa-ticket fa-lg me-1"></i> <b>${ticket.titulo}</b>
+                  <span class="badge ${color} ms-2 text-capitalize">${ticket.prioridad}</span>
+                </h5>
+                <button class="btn btn-outline-dark btn-sm" title="Exportar PDF" onclick="exportarPDF('${ticket.folio}','${ticket.titulo.replace(/'/g,"")}','${ticket.descripcion.replace(/'/g,"")}','${ticket.prioridad}','${ticket.tipo}','${ticket.fecha_str}')">
+                  <i class="fa fa-file-pdf"></i>
+                </button>
+              </div>
+              <p class="card-text mt-1 mb-1">${ticket.descripcion}</p>
+              <small>Folio: <b>${ticket.folio}</b> | Tipo: ${ticket.tipo} | Fecha: ${ticket.fecha_str || ''}</small>
+            </div>
+          </div>
+        `;
+        ticketsList.innerHTML += html;
+      });
+    }
+
+    // ====== Chart de prioridades ======
+    function actualizarChart(tickets) {
+      let altas = tickets.filter(t => t.prioridad === 'alta').length;
+      let medias = tickets.filter(t => t.prioridad === 'media').length;
+      let bajas = tickets.filter(t => t.prioridad === 'baja').length;
+      let ctx = document.getElementById('prio-chart').getContext('2d');
+      if (prioChart) prioChart.destroy();
+      prioChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Alta', 'Media', 'Baja'],
+          datasets: [{
+            label: 'Cantidad de Tickets',
+            data: [altas, medias, bajas],
+            backgroundColor: ['#fd6b6b', '#ffc045', '#5ac98c']
+          }]
+        },
+        options: {
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true, stepSize: 1 } }
+        }
+      });
+    }
+
+    // ====== Exportar CSV ======
+    exportCsvBtn.onclick = async () => {
+      let q = query(collection(db, "tickets"), where("uid", "==", auth.currentUser.uid), orderBy("fecha_creacion", "desc"));
+      let querySnapshot = await getDocs(q);
+      let csv = "Folio,Título,Descripción,Prioridad,Tipo,Fecha\n";
+      querySnapshot.forEach(doc => {
+        let t = doc.data();
+        csv += `"${t.folio}","${t.titulo.replace(/"/g, '""')}","${t.descripcion.replace(/"/g, '""')}",${t.prioridad},${t.tipo},"${t.fecha_str || ''}"\n`;
+      });
+      // Descargar
+      let blob = new Blob([csv], {type: "text/csv"});
+      let link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "tickets.csv";
+      link.click();
+    };
+
+    // ====== Exportar PDF individual ======
+    // Se expone como global para llamada inline en el botón de cada ticket
+    window.exportarPDF = (folio, titulo, desc, prioridad, tipo, fecha) => {
+      import('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js').then(({ jsPDF }) => {
+        const doc = new jsPDF();
+        doc.setFontSize(16);
+        doc.text('Ticket de Pedido', 15, 20);
+        doc.setFontSize(12);
+        doc.text(`Folio: ${folio}`, 15, 35);
+        doc.text(`Título: ${titulo}`, 15, 45);
+        doc.text(`Descripción: ${desc}`, 15, 55);
+        doc.text(`Prioridad: ${prioridad}`, 15, 65);
+        doc.text(`Tipo de pedido: ${tipo}`, 15, 75);
+        doc.text(`Fecha de creación: ${fecha}`, 15, 85);
+        doc.save(`ticket_${folio}.pdf`);
+      });
+    };
+  </script>
+</body>
+</html>
