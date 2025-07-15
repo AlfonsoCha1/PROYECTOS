@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="CSS/index.css" as="index">
+    <title>Restaurante SMUCKY’s</title>
+    <link rel="stylesheet" href="CSS/index.css">
+    <script defer src="JS/index.js"></script>
+</head>
+<body>
+    <header>
+                <!-- Logo y título del restaurante -->
+        <img src="/PROYECTO FINAL/FOTOS/LOGO_DE _MI_RESTAURANTE.png" alt="Logo del Restaurante Smucky's" class="logo">
+        <h1>¿Antojo de algo delicioso? ¡Bienvenido a Smucky’s!</h1>
+        <p>Descubre sabores auténticos y una experiencia culinaria inolvidable. ¡Tu mesa está lista!</p>
+        <nav>
+            <ul>
+                <li><button onclick="navegar('Inicio')">Inicio</button></li>
+                <li><button onclick="navegar('Menú')">Menú</button></li>
+                <li><button onclick="navegar('Reservación')">Reservación</button></li>
+                <li><button onclick="navegar('Contacto')">Contacto</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+                 <!-- Sección de Menu -->
+        <section class="menu-categorias" id="menu">
+            <h2>Menú</h2>
+            <div class="categorias">
+                <button onclick="mostrarCategoria('Entrada')">Entradas</button>
+                <button onclick="mostrarCategoria('Desayuno')">Desayuno</button>
+                <button onclick="mostrarCategoria('Comida')">Comida</button>
+                <button onclick="mostrarCategoria('Cena')">Cena</button>
+                <button onclick="mostrarCategoria('Bebidas')">Bebidas</button>
+                <button onclick="mostrarCategoria('Postres')">Postres</button>
+            </div>
+            <p id="seleccion"></p>
+        </section>
+    </main>
+     <main>
+        
+                <!-- Sección de Entradas -->
+        <section class="entradas" id="Entradas">
+            <h2>Entradas</h2>
+
+            <p>Sopes con queso – $65</p>
+           <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Quesadillas – $80</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Dedos de queso mozzarella – $55</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Nachos con guacamole y pico de gallo – $60</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Alitas BBQ (6 piezas) – $75</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+           
+    </main>
+    
+             <!-- Sección de Desayuno -->
+    <main>
+        <section class="desayuno" id="Desayuno">
+            <h2>Desayuno</h2>
+
+            <p>Chilaquiles con pollo - $177</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Huevos al gusto – $140</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Hotcakes con miel - $185</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Enchiladas Suizas - $199</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+    </main>
+
+             <!-- Sección de Comida -->
+      <main>
+        <section class="comida" id="Comida">
+            <h2>Comida</h2>
+            
+            <p>Arrachera – $485</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Flautas – $275</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Hamburguesas de hawaiana – $295</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Chile Relleno – $275</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+           
+    </main>
+
+             <!-- Sección de Cena -->
+      <main>
+        <section class="cena" id="Cena">
+            <h2>Cena</h2>
+            
+            <p>Cecina – $266</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Tacos de milanesa – $120</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Alambre de pollo – $135</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Pechuga a la parrilla con vegetales salteados – $120</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+    </main>
+
+            <!-- Sección de Bebidas -->
+      <main>
+        <section class="bebidas" id="Bebidas">
+            <h2>Bebidas</h2>
+            
+            <p>Agua de Jamaica - $25</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Limonada natural - $30</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Refresco (Coca-Cola, Sprite, Fanta) - $35</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Té helado de durazno - %26</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Frappé de café - $38</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+            
+           
+    </main>
+
+    <!-- Sección de Postres -->
+      <main>
+        <section class="postres" id="Postres">
+            <h2>Postres</h2>
+            <p>Brownie con helado - $65</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Pastel de chocolate - $80</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Flan casero - $60</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+            
+            <p>Helado de vainilla con frutas - $50</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+
+            <p>Cheesecake de fresa - $70</p>
+            <button class="btn-69" onclick="abrirVentanaPago('Dedos de queso mozzarella', 55)">
+            Añadir Compra
+            </button>
+        </section>
+
+    <!-- Seccion de Reservación  -->
+<main>
+      
+    <section class="reservacion" id="reservacion">
+        <h2>Reservación</h2>
+        <form id="formReserva">
+            <button type="submit" class="btn-55"><span>Confirmar reserva</span></button>
+                <!-- Seccion de Reservación  -->
+<!-- Ventana emergente de reservación -->
+<div id="ventanaReserva" class="ventana" style="display:none;">
+  <div class="contenido">
+    <h2>Reservación</h2>
+    <form id="formularioReservaEmergente">
+      <input type="text" id="res-nombre" placeholder="Nombre completo" required>
+      <input type="email" id="res-correo" placeholder="Correo electrónico" required>
+      <input type="date" id="res-fecha" required>
+      <input type="time" id="res-hora" required>
+      <button type="submit" class="btn-55"><span>Confirmar reserva</span></button>
+      <button type="button" onclick="cerrarVentanaReserva()">Cancelar</button>
+    </form>
+    <p id="mensajeReserva"></p>
+  </div>
+</div>
+        </form>
+    </main>
+
+   <!-- Ventana emergente de pago -->
+<!-- Ventana emergente de pago -->
+  <div id="ventanaPago" class="ventana" style="display:none;">
+    <div class="contenido">
+      <h2>Pago</h2>
+      <p id="detallePago"></p>
+      
+      <div class="cantidad-control">
+        <button onclick="cambiarCantidad(-1)">-</button>
+        <span id="cantidad">1</span>
+        <button onclick="cambiarCantidad(1)">+</button>
+      </div>
+
+      <p id="total"></p>
+
+      <form id="formPago">
+        <select id="metodo" required>
+          <option value="">Selecciona método de pago</option>
+          <option value="tarjeta">Tarjeta</option>
+          <option value="efectivo">Efectivo</option>
+          <option value="transferencia">Transferencia</option>
+        </select>
+        
+        <div id="infoExtra"></div>
+
+        <button class="btn-69" type="submit">Confirmar</button>
+        <button type="button" onclick="cerrarVentanaPago()">Cancelar</button>
+      </form>
+
+      <p id="mensajePago"></p>
+    </div>
+  </div>
+
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<!-- Tu configuración y lógica -->
+<script src="firebase-config.js/firebase-config.js"></script>
+<script defer src="JAVASCRIPT/index.js"></script>
+<script defer src="JS/sheet.js"></script>
+<script defer src="JAVASCRIPT/Correo.js"></script>
+
+
+
+
+
+
+
+</body>
+                        <!--Contactos-->
+ <footer>
+        <p>© 2025 Smucky’s. Todos los derechos reservados.</p>
+        <p>Contacto: contacto@smuckys.com | Tel: +52 55 1234 5678 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-whatsapp"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg></p> 
+        
+        <p>Dirección: Calle Ficticia #123, Ciudad de Mexico, México <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-map-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" /></svg></p>
+        <p>Horario: Lunes a Viernes, 8:00 AM - 10:00 PM</p>
+        <p>Horario: Sabado y Domingo, 9:00 AM - 5:00 PM</p>
+        <p>¡Gracias por elegir Smucky’s! Esperamos verte pronto.</p>
+
+                <!-- Redes Sociales -->
+        <p>Síguenos en nuestras redes sociales:</p>
+        <div class="redes-sociales">
+                    <!-- Linkedin-->
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-brand-linkedin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 2a5 5 0 0 1 5 5v10a5 5 0 0 1 -5 5h-10a5 5 0 0 1 -5 -5v-10a5 5 0 0 1 5 -5zm-9 8a1 1 0 0 0 -1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0 -1 -1m6 0a3 3 0 0 0 -1.168 .236l-.125 .057a1 1 0 0 0 -1.707 .707v5a1 1 0 0 0 2 0v-3a1 1 0 0 1 2 0v3a1 1 0 0 0 2 0v-3a3 3 0 0 0 -3 -3m-6 -3a1 1 0 0 0 -.993 .883l-.007 .127a1 1 0 0 0 1.993 .117l.007 -.127a1 1 0 0 0 -1 -1" /></svg>
+            <a href="https://www.linkedin.com/in/tuusuario" target="_blank">LinkedIn</a>
+            
+                     <!-- GITHUB-->
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
+            <a href="https://github.com/AlfonsoCha1" target="_blank">GitHub</a>
+            
+                     <!-- FACEBOOK-->
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-facebook"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg>
+            <a href="https://facebook.com/tuusuario" target="_blank">Facebook</a>
+           
+                 <!-- INSTAGRAM-->
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M16.5 7.5v.01" /></svg>
+            <a href="https://instagram.com/tuusuario" target="_blank">Instagram</a>
+            
+                    <!-- TWITTER-->
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg>
+            <a href="https://twitter.com/tuusuario" target="_blank">Twitter</a>
+                    <!-- TIK-TOK-->
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-tiktok"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" /></svg>
+            <a href="https://tiktok.com/@tuusuario" target="_blank">TikTok</a>
+        </div>
+    </footer>
+</html>
